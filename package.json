@@ -16,6 +16,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "start-backend": "bash ./startBackend.sh",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
