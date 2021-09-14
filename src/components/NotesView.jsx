@@ -1,6 +1,7 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
+import axios from 'axios';
 import NoteList from './NoteList';
 
 import '../styles/notes-view.css';
@@ -9,29 +10,25 @@ export default class NotesView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: [
-        {
-          id: 1,
-          title: 'note 1',
-          content: 'Content 1',
-        },
-        {
-          id: 2,
-          title: 'note 2',
-          content: 'Content 2',
-        },
-        {
-          id: 3,
-          title: 'note 3',
-          content: 'Content 3',
-        },
-        {
-          id: 4,
-          title: 'note 4',
-          content: 'Content 4',
-        },
-      ],
+      notes: [],
     };
+
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  async componentDidMount() {
+    await this.handleSearch('');
+  }
+
+  async handleSearch(search) {
+    try {
+      const { data: { err, notes } } = await axios.post('/notes/getPreviews', { search });
+
+      if (err) console.log(err);
+      else this.setState({ notes });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
