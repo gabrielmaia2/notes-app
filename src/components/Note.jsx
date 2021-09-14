@@ -45,8 +45,21 @@ export default class Note extends Component {
 
     return (
       <div className="note">
-        <input type="text" className="title" placeholder="Title" value={title} onChange={this.handleTitleInput} />
-        <input type="text" className="content" placeholder="Write something..." value={content} onChange={this.handleContentInput} />
+        <input
+          type="text"
+          className="title text"
+          placeholder="Title"
+          value={title}
+          onChange={this.handleTitleInput}
+        />
+        <div className="content-wrapper">
+          <textarea
+            className="content text"
+            placeholder="Write something..."
+            value={content}
+            onChange={this.handleContentInput}
+          />
+        </div>
         <div className="icons">
           <FontAwesomeIcon
             type="button"
