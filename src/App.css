@@ -2,6 +2,7 @@
   text-align: center;
   color: white;
   background-color: rgb(2, 6, 27);
+  box-sizing: border-box;
 
   position: fixed;
   top: 0;
