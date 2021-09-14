@@ -1,9 +1,22 @@
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/note-preview.css';
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class NotePreview extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete() {
+    const { id, onDelete } = this.props;
+
+    onDelete(id);
+  }
+
   render() {
     const { title, content } = this.props;
 
@@ -27,6 +40,8 @@ export default class NotePreview extends Component {
 }
 
 NotePreview.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
