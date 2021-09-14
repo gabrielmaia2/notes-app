@@ -15,6 +15,7 @@ export default class Note extends Component {
 
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleContentInput = this.handleContentInput.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   handleTitleInput(event) {
@@ -25,6 +26,13 @@ export default class Note extends Component {
     this.setState({ content: event.target.value });
   }
 
+  handleSave() {
+    const { id, onSave } = this.props;
+    const { title, content } = this.state;
+
+    onSave({ id, title, content });
+  }
+
   render() {
     const { title, content } = this.state;
 
@@ -33,7 +41,12 @@ export default class Note extends Component {
         <input type="text" className="title" placeholder="Title" value={title} onChange={this.handleTitleInput} />
         <input type="text" className="content" placeholder="Write something..." value={content} onChange={this.handleContentInput} />
         <div className="icons">
-          <FontAwesomeIcon className="icon save" icon={faSave} />
+          <FontAwesomeIcon
+            type="button"
+            onClick={this.handleSave}
+            className="icon save"
+            icon={faSave}
+          />
           <FontAwesomeIcon className="icon delete" icon={faTrashAlt} />
         </div>
       </div>
@@ -45,4 +58,5 @@ Note.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  onSave: PropTypes.func.isRequired,
 };
