@@ -3,15 +3,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../styles/note.css';
 
 export default class Note extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: '',
-      content: '',
-    };
+
+    const { title, content } = this.props;
+    this.state = { title, content };
 
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleContentInput = this.handleContentInput.bind(this);
@@ -40,3 +40,9 @@ export default class Note extends Component {
     );
   }
 }
+
+Note.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
