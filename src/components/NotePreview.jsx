@@ -10,7 +10,17 @@ export default class NotePreview extends Component {
     return (
       <div className="note">
         <div className="title text">{title}</div>
-        <div className="content text">{content}</div>
+        <div className="content text">
+          {content}
+          <div className="icons">
+            <FontAwesomeIcon
+              type="button"
+              onClick={this.handleDelete}
+              className="icon delete"
+              icon={faTrashAlt}
+            />
+          </div>
+        </div>
       </div>
     );
   }

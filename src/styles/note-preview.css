@@ -42,3 +42,30 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.note .icons {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  font-size: large;
+  padding: 7px;
+}
+
+.note .icon {
+  text-align: right;
+  padding: 3px;
+  margin: 7px;
+  filter: drop-shadow(0.2rem 0.2rem 0.2em black);
+}
+
+.note .icon:active {
+  filter: drop-shadow(0 0 0 black);
+}
+
+.note .icon.delete {
+  color: red;
+}
+
+.note .icon.delete:active {
+  color: rgb(185, 0, 0);
+}
