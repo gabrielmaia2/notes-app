@@ -16,6 +16,7 @@ export default class Note extends Component {
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleContentInput = this.handleContentInput.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleTitleInput(event) {
@@ -33,6 +34,12 @@ export default class Note extends Component {
     onSave({ id, title, content });
   }
 
+  handleDelete() {
+    const { id, onDelete } = this.props;
+
+    onDelete(id);
+  }
+
   render() {
     const { title, content } = this.state;
 
@@ -47,7 +54,12 @@ export default class Note extends Component {
             className="icon save"
             icon={faSave}
           />
-          <FontAwesomeIcon className="icon delete" icon={faTrashAlt} />
+          <FontAwesomeIcon
+            type="button"
+            onClick={this.handleDelete}
+            className="icon delete"
+            icon={faTrashAlt}
+          />
         </div>
       </div>
     );
@@ -59,4 +71,5 @@ Note.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
