@@ -14,6 +14,7 @@ export default class NotesView extends Component {
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   async componentDidMount() {
@@ -26,6 +27,16 @@ export default class NotesView extends Component {
 
       if (err) console.log(err);
       else this.setState({ notes });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async handleSave({ id, title, content }) {
+    try {
+      const { data: { err } } = await axios.put('/notes/put', { id, title, content });
+      if (err) console.log(err);
     } catch (err) {
       console.log(err);
     }
