@@ -15,6 +15,7 @@ export default class NotesView extends Component {
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   async componentDidMount() {
@@ -42,12 +43,22 @@ export default class NotesView extends Component {
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  async handleDelete(id) {
+    try {
+      const { err } = await axios.delete('/notes/delete', { id });
+      if (err) console.log(err);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     const { notes } = this.state;
 
     return (
       <div className="notes-view">
-        <NoteList notes={notes} onDelete={() => {}} />
+        <NoteList notes={notes} onDelete={this.handleDelete} />
         <FontAwesomeIcon
           type="button"
           onClick={() => {}}
