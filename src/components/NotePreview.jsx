@@ -19,17 +19,17 @@ export default function NotePreview({
       <div className="title text">{title}</div>
       <div className="content text">
         {content}
-        <div className="icons">
-          <FontAwesomeIcon
-            type="button"
-            onClick={async (e) => {
-              e.stopPropagation();
-              await onDelete();
-            }}
-            className="icon delete"
-            icon={faTrashAlt}
-          />
-        </div>
+      </div>
+      <div className="icons">
+        <FontAwesomeIcon
+          type="button"
+          onClick={async (e) => {
+            e.stopPropagation();
+            await onDelete();
+          }}
+          className="icon delete"
+          icon={faTrashAlt}
+        />
       </div>
     </button>
   );

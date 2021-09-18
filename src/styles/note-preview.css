@@ -10,6 +10,7 @@
   border-radius: 20px;
   color: rgb(255, 255, 255);
   box-shadow: 0.2rem 0.2rem 0.4em black, -0.2rem 0.2rem 0.4em black;
+  position: relative;
   border: 1px solid rgb(21, 55, 206);
 }
 
