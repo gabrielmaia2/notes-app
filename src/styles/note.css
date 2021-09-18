@@ -57,6 +57,7 @@
 }
 
 .note .content {
+  white-space: pre;
   margin: 0;
   box-sizing: border-box;
   width: 100%;
