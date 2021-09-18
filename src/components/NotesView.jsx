@@ -46,7 +46,7 @@ export default class NotesView extends Component {
   // eslint-disable-next-line class-methods-use-this
   async handleDelete(id) {
     try {
-      const { err } = await axios.delete('/notes/delete', { id });
+      const { err } = await axios.post('/notes/delete', { id });
       if (err) console.log(err);
     } catch (err) {
       console.log(err);
