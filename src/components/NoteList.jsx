@@ -13,10 +13,9 @@ export default function NoteList({ notes, onDelete }) {
     return (
       <NotePreview
         key={id}
-        id={id}
         title={title}
         content={content}
-        onDelete={onDelete}
+        onDelete={async () => { await onDelete(id); }}
       />
     );
   });
