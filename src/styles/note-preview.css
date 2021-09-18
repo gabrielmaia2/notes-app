@@ -1,5 +1,5 @@
 .note-preview {
-  margin: auto;
+  min-width: 0; /* force note previews to have same width */
   width: 250px;
   height: 300px;
   display: flex;
@@ -18,7 +18,7 @@
   background-color: inherit;
   text-align: left;
   display: block;
-  padding: 10px;
+  margin: 10px;
   color: inherit;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 300;
@@ -29,26 +29,24 @@
 }
 
 .note-preview .content {
-  overflow-wrap: break-word;
+  white-space: pre;
+  text-overflow: clip;
   overflow: hidden;
+  overflow-wrap: break-word;
   position: relative;
   box-sizing: border-box;
   font-size: 1.05em;
-  background-color: rgb(7, 15, 48);
   flex-grow: 1;
 
-  background: -webkit-linear-gradient(
-    rgba(255, 255, 255, 1) 80%,
-    rgba(255, 255, 255, 0)
-  );
+  background: -webkit-linear-gradient(top, #ffffff 160px, #ffffff00 190px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .note-preview .icons {
   position: absolute;
-  right: 0px;
-  bottom: 0px;
+  right: 10px;
+  bottom: 10px;
   font-size: large;
   padding: 7px;
 }
