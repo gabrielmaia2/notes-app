@@ -55,8 +55,12 @@ export default class NotesView extends Component {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async handleDelete(id) {
+    if (id === '-1') {
+      this.setState({ currentNote: undefined });
+      return;
+    }
+
     try {
       const { err } = await axios.post('/notes/delete', { id });
       await this.handleSearch('');
@@ -78,6 +82,7 @@ export default class NotesView extends Component {
             id={id}
             title={title}
             content={content}
+            onDelete={this.handleDelete}
             onClose={this.handleCloseNote}
           />
         </div>

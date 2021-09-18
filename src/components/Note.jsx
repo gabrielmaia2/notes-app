@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 
 import '../styles/note.css';
 
+const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+
 export default class Note extends Component {
   constructor(props) {
     super(props);
@@ -35,10 +37,10 @@ export default class Note extends Component {
     onSave({ id, title, content });
   }
 
-  handleDelete() {
+  async handleDelete() {
     const { id, onDelete } = this.props;
 
-    onDelete(id);
+    await onDelete(id);
   }
 
   render() {
@@ -94,6 +96,6 @@ Note.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.instanceOf(AsyncFunction).isRequired,
   onClose: PropTypes.func.isRequired,
 };
