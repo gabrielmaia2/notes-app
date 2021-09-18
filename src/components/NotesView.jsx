@@ -5,14 +5,17 @@ import axios from 'axios';
 import NoteList from './NoteList';
 
 import '../styles/notes-view.css';
+import Note from './Note';
 
 export default class NotesView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notes: [],
+      currentNote: undefined,
     };
 
+    this.handleNewNote = this.handleNewNote.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -20,6 +23,10 @@ export default class NotesView extends Component {
 
   async componentDidMount() {
     await this.handleSearch('');
+  }
+
+  handleNewNote() {
+    this.setState({ currentNote: { id: '-1', title: '', content: '' } });
   }
 
   async handleSearch(search) {
@@ -55,14 +62,29 @@ export default class NotesView extends Component {
   }
 
   render() {
-    const { notes } = this.state;
+    const { notes, currentNote } = this.state;
+
+    let currentNoteView;
+    if (currentNote) {
+      const { id, title, content } = currentNote;
+      currentNoteView = (
+        <div className="current-note">
+          <Note
+            id={id}
+            title={title}
+            content={content}
+          />
+        </div>
+      );
+    }
 
     return (
       <div className="notes-view">
+        {currentNoteView}
         <NoteList notes={notes} onDelete={this.handleDelete} />
         <FontAwesomeIcon
           type="button"
-          onClick={() => {}}
+          onClick={this.handleNewNote}
           className="add-button"
           icon={faPlus}
         />
