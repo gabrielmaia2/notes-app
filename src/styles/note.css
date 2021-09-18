@@ -73,6 +73,7 @@
 }
 
 .note .icon {
+  color: white;
   text-align: right;
   align-self: flex-end;
   padding: 3px;
@@ -81,21 +82,18 @@
 }
 
 .note .icon:active {
+  color: rgb(185, 185, 185);
   filter: drop-shadow(0 0 0 black);
 }
 
-.note .icon.save {
-  color: white;
-}
-
-.note .icon.delete {
+.note .delete {
   color: red;
 }
 
-.note .icon.save:active {
-  color: rgb(185, 185, 185);
+.note .delete:active {
+  color: rgb(185, 0, 0);
 }
 
-.note .icon.delete:active {
-  color: rgb(185, 0, 0);
+.note .close {
+  font-size: 1.2em;
 }
