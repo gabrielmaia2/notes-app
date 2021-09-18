@@ -21,7 +21,7 @@ export default class NotePreview extends Component {
     const { title, content } = this.props;
 
     return (
-      <div className="note">
+      <div className="note-preview">
         <div className="title text">{title}</div>
         <div className="content text">
           {content}

@@ -1,4 +1,4 @@
-.note {
+.note-preview {
   margin: auto;
   width: 250px;
   height: 300px;
@@ -12,7 +12,7 @@
   box-shadow: 0.2rem 0.2rem 0.4em black, -0.2rem 0.2rem 0.4em black;
 }
 
-.note .text {
+.note-preview .text {
   background-color: inherit;
   text-align: left;
   display: block;
@@ -22,11 +22,11 @@
   font-weight: 300;
 }
 
-.note .title {
+.note-preview .title {
   font-size: 1.2em;
 }
 
-.note .content {
+.note-preview .content {
   overflow-wrap: break-word;
   overflow: hidden;
   position: relative;
@@ -43,7 +43,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.note .icons {
+.note-preview .icons {
   position: absolute;
   right: 0px;
   bottom: 0px;
@@ -51,21 +51,21 @@
   padding: 7px;
 }
 
-.note .icon {
+.note-preview .icon {
   text-align: right;
   padding: 3px;
   margin: 7px;
   filter: drop-shadow(0.2rem 0.2rem 0.2em black);
 }
 
-.note .icon:active {
+.note-preview .icon:active {
   filter: drop-shadow(0 0 0 black);
 }
 
-.note .icon.delete {
+.note-preview .icon.delete {
   color: red;
 }
 
-.note .icon.delete:active {
+.note-preview .icon.delete:active {
   color: rgb(185, 0, 0);
 }
