@@ -4,6 +4,8 @@ import NotePreview from './NotePreview';
 
 import '../styles/note-list.css';
 
+const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+
 export default function NoteList({ notes, onDelete }) {
   const noteList = notes.map((note) => {
     const { id, title, content } = note;
@@ -28,5 +30,5 @@ export default function NoteList({ notes, onDelete }) {
 
 NoteList.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.instanceOf(AsyncFunction).isRequired,
 };

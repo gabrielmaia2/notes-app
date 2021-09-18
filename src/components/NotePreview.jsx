@@ -2,7 +2,10 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import '../styles/note-preview.css';
+
+const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 
 export default class NotePreview extends Component {
   constructor(props) {
@@ -11,10 +14,10 @@ export default class NotePreview extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleDelete() {
+  async handleDelete() {
     const { id, onDelete } = this.props;
 
-    onDelete(id);
+    await onDelete(id);
   }
 
   render() {
@@ -43,5 +46,5 @@ NotePreview.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.instanceOf(AsyncFunction).isRequired,
 };
