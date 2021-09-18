@@ -45,10 +45,21 @@ export default class NotesView extends Component {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async handleSave({ id, title, content }) {
     try {
-      const { data: { err } } = await axios.put('/notes/put', { id, title, content });
+      let res;
+      if (id === '-1') {
+        const tags = [];
+        res = await axios.post('/notes/post', { title, content, tags });
+        const { data: { id: newId, title: newTitle, content: newContent } } = res;
+
+        this.setState({ currentNote: { id: newId, title: newTitle, content: newContent } });
+      } else {
+        res = await axios.put('/notes/put', { id, title, content });
+      }
+
+      await this.handleSearch('');
+      const { data: { err } } = res;
       if (err) console.log(err);
     } catch (err) {
       console.log(err);
@@ -82,6 +93,7 @@ export default class NotesView extends Component {
             id={id}
             title={title}
             content={content}
+            onSave={this.handleSave}
             onDelete={this.handleDelete}
             onClose={this.handleCloseNote}
           />

@@ -30,11 +30,11 @@ export default class Note extends Component {
     this.setState({ content: event.target.value });
   }
 
-  handleSave() {
+  async handleSave() {
     const { id, onSave } = this.props;
     const { title, content } = this.state;
 
-    onSave({ id, title, content });
+    await onSave({ id, title, content });
   }
 
   async handleDelete() {
@@ -95,7 +95,7 @@ Note.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.instanceOf(AsyncFunction).isRequired,
   onDelete: PropTypes.instanceOf(AsyncFunction).isRequired,
   onClose: PropTypes.func.isRequired,
 };
