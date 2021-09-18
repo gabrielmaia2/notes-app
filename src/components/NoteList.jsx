@@ -6,7 +6,7 @@ import '../styles/note-list.css';
 
 const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 
-export default function NoteList({ notes, onDelete }) {
+export default function NoteList({ notes, onClick, onDelete }) {
   const noteList = notes.map((note) => {
     const { id, title, content } = note;
 
@@ -15,6 +15,7 @@ export default function NoteList({ notes, onDelete }) {
         key={id}
         title={title}
         content={content}
+        onClick={async () => { await onClick(id); }}
         onDelete={async () => { await onDelete(id); }}
       />
     );
@@ -29,5 +30,6 @@ export default function NoteList({ notes, onDelete }) {
 
 NoteList.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.instanceOf(AsyncFunction).isRequired,
   onDelete: PropTypes.instanceOf(AsyncFunction).isRequired,
 };

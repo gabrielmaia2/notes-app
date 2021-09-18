@@ -18,6 +18,7 @@ export default class NotesView extends Component {
     this.handleCloseNote = this.handleCloseNote.bind(this);
     this.handleNewNote = this.handleNewNote.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleGet = this.handleGet.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -40,6 +41,17 @@ export default class NotesView extends Component {
 
       if (err) console.log(err);
       else this.setState({ notes });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async handleGet(id) {
+    try {
+      const { data: { err, note } } = await axios.post('/notes/get', { id });
+
+      if (err) console.log(err);
+      else this.setState({ currentNote: note });
     } catch (err) {
       console.log(err);
     }
@@ -104,7 +116,7 @@ export default class NotesView extends Component {
     return (
       <div className="notes-view">
         {currentNoteView}
-        <NoteList notes={notes} onDelete={this.handleDelete} />
+        <NoteList notes={notes} onClick={this.handleGet} onDelete={this.handleDelete} />
         <FontAwesomeIcon
           type="button"
           onClick={this.handleNewNote}

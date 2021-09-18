@@ -8,28 +8,36 @@ import '../styles/note-preview.css';
 const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 
 export default function NotePreview({
-  title, content, onDelete,
+  title, content, onClick, onDelete,
 }) {
   return (
-    <div className="note-preview">
+    <button
+      type="button"
+      className="note-preview"
+      onClick={onClick}
+    >
       <div className="title text">{title}</div>
       <div className="content text">
         {content}
         <div className="icons">
           <FontAwesomeIcon
             type="button"
-            onClick={onDelete}
+            onClick={async (e) => {
+              e.stopPropagation();
+              await onDelete();
+            }}
             className="icon delete"
             icon={faTrashAlt}
           />
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
 NotePreview.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  onClick: PropTypes.instanceOf(AsyncFunction).isRequired,
   onDelete: PropTypes.instanceOf(AsyncFunction).isRequired,
 };
