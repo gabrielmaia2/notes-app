@@ -15,6 +15,7 @@ export default class NotesView extends Component {
       currentNote: undefined,
     };
 
+    this.handleCloseNote = this.handleCloseNote.bind(this);
     this.handleNewNote = this.handleNewNote.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -23,6 +24,10 @@ export default class NotesView extends Component {
 
   async componentDidMount() {
     await this.handleSearch('');
+  }
+
+  handleCloseNote() {
+    this.setState({ currentNote: undefined });
   }
 
   handleNewNote() {
@@ -73,6 +78,7 @@ export default class NotesView extends Component {
             id={id}
             title={title}
             content={content}
+            onClose={this.handleCloseNote}
           />
         </div>
       );

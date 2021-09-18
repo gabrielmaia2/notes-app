@@ -1,9 +1,10 @@
 import {
-  faSave, faTrashAlt,
+  faSave, faTimes, faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import '../styles/note.css';
 
 export default class Note extends Component {
@@ -41,17 +42,26 @@ export default class Note extends Component {
   }
 
   render() {
+    const { onClose } = this.props;
     const { title, content } = this.state;
 
     return (
       <div className="note">
-        <input
-          type="text"
-          className="title text"
-          placeholder="Title"
-          value={title}
-          onChange={this.handleTitleInput}
-        />
+        <div className="title-wrapper">
+          <input
+            type="text"
+            className="title text"
+            placeholder="Title"
+            value={title}
+            onChange={this.handleTitleInput}
+          />
+          <FontAwesomeIcon
+            type="button"
+            onClick={onClose}
+            className="icon close"
+            icon={faTimes}
+          />
+        </div>
         <div className="content-wrapper">
           <textarea
             className="content text"
@@ -85,4 +95,5 @@ Note.propTypes = {
   content: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };

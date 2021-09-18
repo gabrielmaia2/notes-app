@@ -47,8 +47,13 @@
   border-radius: 10px;
 }
 
+.note .title-wrapper {
+  display: flex;
+}
+
 .note .title {
   font-size: 1.4em;
+  flex-grow: 1;
 }
 
 .note .content {
