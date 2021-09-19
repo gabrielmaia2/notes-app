@@ -71,9 +71,10 @@ export default class Note extends Component {
   }
 
   async handleDelete() {
-    const { id, onDelete } = this.props;
+    const { id, onDelete, onClose } = this.props;
 
     await onDelete(id);
+    onClose();
   }
 
   focusContent() {
