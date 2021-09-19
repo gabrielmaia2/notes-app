@@ -19,6 +19,7 @@ export default class Note extends Component {
     this.noteRef = React.createRef();
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleInput = this.handleInput.bind(this);
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleContentInput = this.handleContentInput.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -27,15 +28,24 @@ export default class Note extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
+    document.addEventListener('keydown', this.handleInput);
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick);
+    document.addEventListener('keydown', this.handleInput);
   }
 
   handleClick(e) {
     const { onClose } = this.props;
     if (!this.noteRef.current.contains(e.target)) {
+      onClose();
+    }
+  }
+
+  handleInput(e) {
+    const { onClose } = this.props;
+    if (e.key === 'Escape') {
       onClose();
     }
   }
