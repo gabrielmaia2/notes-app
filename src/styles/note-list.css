@@ -18,8 +18,29 @@
 }
 
 .note-list > * {
-  flex: 0 0 21%;
-  height: 25vw;
+  flex: 0 0 16%;
+  height: 20vw;
   margin: 1%;
   padding: 1%;
+}
+
+@media only screen and (max-width: 1400px) {
+  .note-list > * {
+    flex: 0 0 21%;
+    height: 25vw;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .note-list > * {
+    flex: 0 0 29.33%;
+    height: 33.33vw;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .note-list > * {
+    flex: 0 0 46%;
+    height: 50vw;
+  }
 }
