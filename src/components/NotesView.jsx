@@ -1,6 +1,7 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import NoteList from './NoteList';
 
@@ -36,28 +37,34 @@ export default class NotesView extends Component {
   }
 
   async handleSearch(search) {
+    const { handleError } = this.props;
+
     try {
       const { data: { err, notes } } = await axios.post('/notes/getPreviews', { search });
 
-      if (err) console.log(err);
+      if (err) handleError(err);
       else this.setState({ notes });
     } catch (err) {
-      console.log(err);
+      handleError(err);
     }
   }
 
   async handleGet(id) {
+    const { handleError } = this.props;
+
     try {
       const { data: { err, note } } = await axios.post('/notes/get', { id });
 
-      if (err) console.log(err);
+      if (err) handleError(err);
       else this.setState({ currentNote: note });
     } catch (err) {
-      console.log(err);
+      handleError(err);
     }
   }
 
   async handleSave({ id, title, content }) {
+    const { handleError } = this.props;
+
     try {
       let res;
       if (id === '-1') {
@@ -72,13 +79,15 @@ export default class NotesView extends Component {
 
       await this.handleSearch('');
       const { data: { err } } = res;
-      if (err) console.log(err);
+      if (err) handleError(err);
     } catch (err) {
-      console.log(err);
+      handleError(err);
     }
   }
 
   async handleDelete(id) {
+    const { handleError } = this.props;
+
     if (id === '-1') {
       this.setState({ currentNote: undefined });
       return;
@@ -87,9 +96,9 @@ export default class NotesView extends Component {
     try {
       const { err } = await axios.post('/notes/delete', { id });
       await this.handleSearch('');
-      if (err) console.log(err);
+      if (err) handleError(err);
     } catch (err) {
-      console.log(err);
+      handleError(err);
     }
   }
 
@@ -127,3 +136,7 @@ export default class NotesView extends Component {
     );
   }
 }
+
+NotesView.propTypes = {
+  handleError: PropTypes.func.isRequired,
+};
