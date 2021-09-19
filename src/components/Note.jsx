@@ -47,10 +47,13 @@ export default class Note extends Component {
     }
   }
 
-  handleInput(e) {
+  async handleInput(e) {
     const { onClose } = this.props;
     if (e.key === 'Escape') {
       onClose();
+    } else if (e.ctrlKey && e.key === 's') {
+      e.preventDefault();
+      await this.handleSave();
     }
   }
 
