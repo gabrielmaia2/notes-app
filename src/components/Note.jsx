@@ -63,10 +63,11 @@ export default class Note extends Component {
   }
 
   async handleSave() {
-    const { id, onSave } = this.props;
+    const { id, onSave, onClose } = this.props;
     const { title, content } = this.state;
 
     await onSave({ id, title, content });
+    onClose();
   }
 
   async handleDelete() {
