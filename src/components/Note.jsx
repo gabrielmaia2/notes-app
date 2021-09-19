@@ -1,4 +1,6 @@
 import {
+  faCheck,
+  faCircleNotch,
   faSave, faTimes, faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -69,7 +71,10 @@ export default class Note extends Component {
     const { id, onSave } = this.props;
     const { title, content } = this.state;
 
+    this.setState({ saveStatus: 'saving' });
     await onSave({ id, title, content });
+    this.setState({ saveStatus: 'saved' });
+    setTimeout(() => this.setState({ saveStatus: 'none' }), 1000);
   }
 
   async handleDelete() {
@@ -88,7 +93,16 @@ export default class Note extends Component {
 
   render() {
     const { onClose } = this.props;
-    const { title, content } = this.state;
+    const { title, content, saveStatus } = this.state;
+
+    let saveIcon;
+    if (saveStatus === 'saving') {
+      saveIcon = faCircleNotch;
+    } else if (saveStatus === 'saved') {
+      saveIcon = faCheck;
+    } else {
+      saveIcon = faSave;
+    }
 
     return (
       <div className="note" ref={this.noteRef}>
@@ -123,8 +137,8 @@ export default class Note extends Component {
               await this.handleSave();
               onClose();
             }}
-            className="icon save"
-            icon={faSave}
+            className={`icon save ${saveStatus}`}
+            icon={saveIcon}
           />
           <FontAwesomeIcon
             type="button"

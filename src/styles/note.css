@@ -87,6 +87,12 @@
   filter: drop-shadow(0 0 0 black);
 }
 
+.note .save.saving {
+  transition: filter 0.1s;
+  filter: drop-shadow(0 0 0 black);
+  animation: save-rotation 0.4s infinite linear;
+}
+
 .note .delete {
   color: red;
 }
@@ -97,4 +103,13 @@
 
 .note .close {
   font-size: 1.2em;
+}
+
+@keyframes save-rotation {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
 }
