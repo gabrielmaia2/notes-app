@@ -22,8 +22,10 @@ export default function NoteList({ notes, onClick, onDelete }) {
   });
 
   return (
-    <div className="notes-list">
-      {noteList}
+    <div className="note-list-parent">
+      <div className="note-list">
+        {noteList}
+      </div>
     </div>
   );
 }

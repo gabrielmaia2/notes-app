@@ -1,8 +1,25 @@
-.notes-list {
-  color: white;
-  padding: 20px;
+.note-list-parent {
   height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.note-list {
+  color: white;
+  padding: 1%;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 100px;
   overflow-y: scroll;
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.note-list > * {
+  flex: 0 0 21%;
+  height: 25vw;
+  margin: 1%;
+  padding: 1%;
 }
