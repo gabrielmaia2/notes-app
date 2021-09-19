@@ -109,22 +109,22 @@ export default class NotesView extends Component {
     if (currentNote) {
       const { id, title, content } = currentNote;
       currentNoteView = (
-        <div className="current-note">
-          <Note
-            id={id}
-            title={title}
-            content={content}
-            onSave={this.handleSave}
-            onDelete={this.handleDelete}
-            onClose={this.handleCloseNote}
-          />
-        </div>
+        <Note
+          id={id}
+          title={title}
+          content={content}
+          onSave={this.handleSave}
+          onDelete={this.handleDelete}
+          onClose={this.handleCloseNote}
+        />
       );
     }
 
     return (
       <div className="notes-view-wrapper">
-        {currentNoteView}
+        <div className="current-note" viewing-note={String(!!currentNoteView)}>
+          {currentNoteView}
+        </div>
         <div className="notes-view" style={(currentNoteView) ? { filter: 'blur(2px)' } : {}}>
           <NoteList notes={notes} onClick={this.handleGet} onDelete={this.handleDelete} />
           <FontAwesomeIcon
