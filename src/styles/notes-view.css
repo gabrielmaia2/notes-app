@@ -20,3 +20,13 @@
   background-color: rgb(185, 185, 185);
   box-shadow: 0 0 0 black;
 }
+
+.notes-view .current-note {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.562);
+}
