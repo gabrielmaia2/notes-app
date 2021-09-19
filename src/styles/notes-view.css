@@ -1,3 +1,9 @@
+.notes-view-wrapper {
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+}
+
 .notes-view {
   position: relative;
   height: 100%;
@@ -21,7 +27,7 @@
   box-shadow: 0 0 0 black;
 }
 
-.notes-view .current-note {
+.notes-view-wrapper .current-note {
   position: absolute;
   width: 100vw;
   height: 100vh;

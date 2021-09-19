@@ -123,15 +123,17 @@ export default class NotesView extends Component {
     }
 
     return (
-      <div className="notes-view">
+      <div className="notes-view-wrapper">
         {currentNoteView}
-        <NoteList notes={notes} onClick={this.handleGet} onDelete={this.handleDelete} />
-        <FontAwesomeIcon
-          type="button"
-          onClick={this.handleNewNote}
-          className="add-button"
-          icon={faPlus}
-        />
+        <div className="notes-view" style={(currentNoteView) ? { filter: 'blur(2px)' } : {}}>
+          <NoteList notes={notes} onClick={this.handleGet} onDelete={this.handleDelete} />
+          <FontAwesomeIcon
+            type="button"
+            onClick={this.handleNewNote}
+            className="add-button"
+            icon={faPlus}
+          />
+        </div>
       </div>
     );
   }
