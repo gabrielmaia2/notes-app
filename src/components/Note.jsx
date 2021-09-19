@@ -17,6 +17,7 @@ export default class Note extends Component {
     this.state = { title, content };
 
     this.noteRef = React.createRef();
+    this.contentRef = React.createRef();
 
     this.handleClick = this.handleClick.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -24,11 +25,14 @@ export default class Note extends Component {
     this.handleContentInput = this.handleContentInput.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+
+    this.focusContent = this.focusContent.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
     document.addEventListener('keydown', this.handleInput);
+    this.focusContent();
   }
 
   componentWillUnmount() {
@@ -71,6 +75,13 @@ export default class Note extends Component {
     await onDelete(id);
   }
 
+  focusContent() {
+    this.contentRef.current.focus();
+    const temp = this.contentRef.current.value;
+    this.contentRef.current.value = '';
+    this.contentRef.current.value = temp;
+  }
+
   render() {
     const { onClose } = this.props;
     const { title, content } = this.state;
@@ -94,6 +105,7 @@ export default class Note extends Component {
         </div>
         <div className="content-wrapper">
           <textarea
+            ref={this.contentRef}
             className="content text"
             placeholder="Write something..."
             value={content}
