@@ -66,11 +66,10 @@ export default class Note extends Component {
   }
 
   async handleSave() {
-    const { id, onSave, onClose } = this.props;
+    const { id, onSave } = this.props;
     const { title, content } = this.state;
 
     await onSave({ id, title, content });
-    onClose();
   }
 
   async handleDelete() {
@@ -120,7 +119,10 @@ export default class Note extends Component {
         <div className="icons">
           <FontAwesomeIcon
             type="button"
-            onClick={this.handleSave}
+            onClick={async () => {
+              await this.handleSave();
+              onClose();
+            }}
             className="icon save"
             icon={faSave}
           />
