@@ -16,10 +16,28 @@ export default class Note extends Component {
     const { title, content } = this.props;
     this.state = { title, content };
 
+    this.noteRef = React.createRef();
+
+    this.handleClick = this.handleClick.bind(this);
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleContentInput = this.handleContentInput.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick);
+  }
+
+  handleClick(e) {
+    const { onClose } = this.props;
+    if (!this.noteRef.current.contains(e.target)) {
+      onClose();
+    }
   }
 
   handleTitleInput(event) {
@@ -48,7 +66,7 @@ export default class Note extends Component {
     const { title, content } = this.state;
 
     return (
-      <div className="note">
+      <div className="note" ref={this.noteRef}>
         <div className="title-wrapper">
           <input
             type="text"
