@@ -25,10 +25,16 @@
 }
 
 .note-preview .title {
+  opacity: 0.7;
   font-size: 1.2em;
 }
 
+.note-preview .title[hasContent="true"] {
+  opacity: 1;
+}
+
 .note-preview .content {
+  opacity: 0.7;
   white-space: pre;
   text-overflow: clip;
   overflow: hidden;
@@ -37,7 +43,10 @@
   box-sizing: border-box;
   font-size: 1.05em;
   flex-grow: 1;
+}
 
+.note-preview .content[hasContent="true"] {
+  opacity: 1;
   background: -webkit-linear-gradient(top, #ffffff 160px, #ffffff00 190px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

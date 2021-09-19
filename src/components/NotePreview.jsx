@@ -16,9 +16,9 @@ export default function NotePreview({
       className="note-preview"
       onClick={onClick}
     >
-      <div className="title text">{title}</div>
-      <div className="content text">
-        {content}
+      <div className="title text" hasContent={String(!!title)}>{title || 'No Title'}</div>
+      <div className="content text" hasContent={String(!!content)}>
+        {content || 'No Content'}
       </div>
       <div className="icons">
         <FontAwesomeIcon
