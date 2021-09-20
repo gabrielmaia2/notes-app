@@ -29,7 +29,7 @@
   font-size: 1.2em;
 }
 
-.note-preview .title[hasContent="true"] {
+.note-preview .title[hascontent="true"] {
   opacity: 1;
 }
 
@@ -45,7 +45,7 @@
   flex-grow: 1;
 }
 
-.note-preview .content[hasContent="true"] {
+.note-preview .content[hascontent="true"] {
   opacity: 1;
   background: -webkit-linear-gradient(top, #ffffff 160px, #ffffff00 190px);
   -webkit-background-clip: text;
