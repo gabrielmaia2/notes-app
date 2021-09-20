@@ -18,6 +18,7 @@ export default class Note extends Component {
     const { title, content } = this.props;
     this.state = { title, content };
 
+    this.mounted = false;
     this.noteRef = React.createRef();
     this.contentRef = React.createRef();
 
@@ -32,6 +33,7 @@ export default class Note extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     document.addEventListener('mousedown', this.handleClick);
     document.addEventListener('keydown', this.handleInput);
     this.focusContent();
@@ -39,6 +41,7 @@ export default class Note extends Component {
 
   componentWillUnmount() {
     const { timeout } = this.state;
+    this.mounted = false;
     document.removeEventListener('mousedown', this.handleClick);
     document.addEventListener('keydown', this.handleInput);
     if (timeout) clearTimeout(timeout);
@@ -73,15 +76,21 @@ export default class Note extends Component {
     const { id, onSave } = this.props;
     const { title, content } = this.state;
 
+    if (!this.mounted) return;
     this.setState({ saveStatus: 'saving' });
+    if (!this.mounted) return;
     await onSave({ id, title, content });
+    if (!this.mounted) return;
     this.setState({ saveStatus: 'saved' });
 
+    if (!this.mounted) return;
     await new Promise((res) => {
       const timeout = setTimeout(() => {
+        if (!this.mounted) return;
         this.setState({ saveStatus: 'none', timeout: undefined });
         res();
       }, 1000);
+      if (!this.mounted) return;
       this.setState({ timeout });
     });
   }
