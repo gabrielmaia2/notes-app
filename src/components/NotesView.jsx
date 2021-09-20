@@ -94,7 +94,7 @@ export default class NotesView extends Component {
     }
 
     try {
-      const { err } = await axios.post('/notes/delete', { id });
+      const { data: { err } } = await axios.post('/notes/delete', { id });
       await this.handleSearch('');
       if (err) handleError(err);
     } catch (err) {
