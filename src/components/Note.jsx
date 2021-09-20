@@ -38,8 +38,10 @@ export default class Note extends Component {
   }
 
   componentWillUnmount() {
+    const { timeout } = this.state;
     document.removeEventListener('mousedown', this.handleClick);
     document.addEventListener('keydown', this.handleInput);
+    if (timeout) clearTimeout(timeout);
   }
 
   handleClick(e) {
@@ -74,7 +76,14 @@ export default class Note extends Component {
     this.setState({ saveStatus: 'saving' });
     await onSave({ id, title, content });
     this.setState({ saveStatus: 'saved' });
-    setTimeout(() => this.setState({ saveStatus: 'none' }), 1000);
+
+    await new Promise((res) => {
+      const timeout = setTimeout(() => {
+        this.setState({ saveStatus: 'none', timeout: undefined });
+        res();
+      }, 1000);
+      this.setState({ timeout });
+    });
   }
 
   async handleDelete() {
