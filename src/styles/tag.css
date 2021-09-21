@@ -1,0 +1,24 @@
+.tag {
+  text-align: center;
+  font-family: inherit;
+  color: rgb(173, 188, 255);
+  font-size: 1.2em;
+  box-sizing: border-box;
+  width: 80%;
+  border: 0;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+  background-color: rgb(16, 30, 99);
+  border: 1px solid rgb(21, 55, 206);
+  border-radius: 600px;
+  box-shadow: 0.1rem 0.1rem 0.2em black;
+  transition: box-shadow 0.1s, border 0.1s, padding 0.1s;
+}
+
+.tag:active {
+  padding-top: 11px;
+  padding-left: 11px;
+  border: 1px solid rgb(16, 30, 99);
+  box-shadow: 0 0 0 black;
+}
