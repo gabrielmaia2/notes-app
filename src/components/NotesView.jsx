@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import NoteList from './NoteList';
+import TagBar from './TagBar';
 
 import '../styles/notes-view.css';
 import Note from './Note';
@@ -126,6 +127,7 @@ export default class NotesView extends Component {
           {currentNoteView}
         </div>
         <div className="notes-view" style={(currentNoteView) ? { filter: 'blur(2px)' } : {}}>
+          <TagBar />
           <NoteList notes={notes} onClick={this.handleGet} onDelete={this.handleDelete} />
           <FontAwesomeIcon
             type="button"

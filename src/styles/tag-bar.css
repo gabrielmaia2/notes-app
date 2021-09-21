@@ -1,0 +1,15 @@
+.tag-bar {
+  width: 20vw;
+  background-color: rgb(12, 22, 65);
+  border-right: 1px solid rgb(21, 55, 206);
+  box-shadow: 0.2rem 0.2rem 0.4em black;
+}
+
+.tag-bar .title {
+  font-size: 2em;
+  background-color: rgb(16, 30, 99);
+  padding: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(21, 55, 206);
+  box-shadow: 0.1rem 0.1rem 0.2em black;
+}
